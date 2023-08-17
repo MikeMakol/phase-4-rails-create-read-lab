@@ -18,8 +18,14 @@ class PlantsController < ApplicationController
 
     # POST /plants
     def create
-        plant = Plant.create(params.permit(:name, :image, :price))
+        plant = Plant.create(plant_params)
         render json: plant, status: :created
+    end
+
+    private
+
+    def plant_params
+        params.permit(:name, :image, :price)
     end
 
 end
